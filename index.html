@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lineaire — Get your business ready for the AI era</title>
+    <meta name="description" content="We design secure and efficient AI automations that allow you to reclaim time, decrease costs and maintain full control over your operations.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Space Grotesk ≈ Telegraf | Outfit ≈ Garet — swap @font-face below when you have the actual files -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ─────────────────────────────────────────────
+           TOKENS
+        ───────────────────────────────────────────── */
+        :root {
+            --bg:      #f6f4f0;
+            --black:   #111111;
+            --accent:  #ffbd59;
+            --white:   #ffffff;
+            --muted:   #6b6860;
+            --border:  rgba(17, 17, 17, 0.10);
+
+            --font-display: 'Space Grotesk', sans-serif;  /* replace: Telegraf */
+            --font-body:    'Outfit', sans-serif;          /* replace: Garet   */
+
+            --nav-h:   68px;
+            --wrap:    1160px;
+            --pad:     clamp(24px, 4vw, 48px);
+            --sec:     clamp(80px, 10vw, 140px);
+        }
+
+        /* ─────────────────────────────────────────────
+           RESET
+        ───────────────────────────────────────────── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--black);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        img { display: block; max-width: 100%; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* ─────────────────────────────────────────────
+           LAYOUT
+        ───────────────────────────────────────────── */
+        .wrap {
+            max-width: var(--wrap);
+            margin-inline: auto;
+            padding-inline: var(--pad);
+        }
+        .section { padding-block: var(--sec); }
+
+        /* ─────────────────────────────────────────────
+           TYPE SCALE
+        ───────────────────────────────────────────── */
+        .t-display {
+            font-family: var(--font-display);
+            font-size: clamp(3.2rem, 8vw, 7.5rem);
+            font-weight: 700;
+            line-height: 1.0;
+            letter-spacing: -0.035em;
+        }
+        .t-h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4.5vw, 3.75rem);
+            font-weight: 700;
+            line-height: 1.08;
+            letter-spacing: -0.025em;
+        }
+        .t-h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.4rem, 2.5vw, 2rem);
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+        .t-h3 {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+        .t-body { font-size: 1.0625rem; line-height: 1.72; }
+        .t-sm   { font-size: 0.875rem;  line-height: 1.6; }
+        .t-xs   { font-size: 0.775rem;  line-height: 1.5; }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-body);
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--muted);
+            margin-bottom: 22px;
+        }
+        .eyebrow::before {
+            content: '';
+            width: 20px;
+            height: 2px;
+            background: var(--accent);
+            flex-shrink: 0;
+        }
+
+        /* ─────────────────────────────────────────────
+           BUTTONS
+        ───────────────────────────────────────────── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 28px;
+            border-radius: 7px;
+            font-family: var(--font-body);
+            font-size: 0.9375rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+        }
+        .btn:hover { transform: translateY(-2px); }
+
+        .btn-dark {
+            background: var(--black);
+            color: var(--white);
+        }
+        .btn-dark:hover {
+            background: #2a2a2a;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+        }
+        .btn-accent {
+            background: var(--accent);
+            color: var(--black);
+        }
+        .btn-accent:hover {
+            background: #f5b347;
+            box-shadow: 0 8px 24px rgba(255, 189, 89, 0.4);
+        }
+        .btn-ghost {
+            background: transparent;
+            color: var(--black);
+            border: 1.5px solid rgba(17,17,17,0.25);
+        }
+        .btn-ghost:hover {
+            border-color: var(--black);
+            background: var(--black);
+            color: var(--white);
+        }
+        .btn-ghost-light {
+            background: transparent;
+            color: var(--white);
+            border: 1.5px solid rgba(255,255,255,0.25);
+        }
+        .btn-ghost-light:hover {
+            border-color: var(--white);
+            background: var(--white);
+            color: var(--black);
+        }
+
+        /* ─────────────────────────────────────────────
+           NAV
+        ───────────────────────────────────────────── */
+        .nav {
+            position: fixed;
+            inset-block-start: 0;
+            inset-inline: 0;
+            height: var(--nav-h);
+            background: rgba(246, 244, 240, 0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            z-index: 200;
+            transition: border-color 0.3s;
+        }
+        .nav__inner {
+            max-width: var(--wrap);
+            margin-inline: auto;
+            padding-inline: var(--pad);
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav__logo {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: var(--black);
+            line-height: 1;
+        }
+        .nav__logo .ai { color: var(--accent); }
+        .nav__links {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+        }
+        .nav__links a:not(.btn) {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--black);
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+        .nav__links a:not(.btn):hover { opacity: 1; }
+
+        @media (max-width: 700px) {
+            .nav__links .nav-text-links { display: none; }
+        }
+
+        /* ─────────────────────────────────────────────
+           HERO
+        ───────────────────────────────────────────── */
+        .hero {
+            padding-top: var(--nav-h);
+            min-height: 100dvh;
+            display: grid;
+            grid-template-rows: 1fr auto;
+        }
+        .hero__main {
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 48px;
+            align-items: center;
+            padding-block: 80px 60px;
+        }
+        .hero__heading { margin-bottom: 28px; }
+        .hero__heading .accent { color: var(--accent); }
+        .hero__sub {
+            color: #555;
+            max-width: 480px;
+            margin-bottom: 44px;
+        }
+        .hero__ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+
+        /* Hero visual */
+        .hero__visual {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .hv-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 22px 24px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+        }
+        .hv-card__label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+        .hv-card__value {
+            font-family: var(--font-display);
+            font-size: 1.85rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1;
+        }
+        .hv-card__sub {
+            font-size: 0.82rem;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+        .hv-card__row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .hv-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 100px;
+            background: rgba(255,189,89,0.18);
+            color: #8a6200;
+        }
+        .hv-bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 6px;
+            height: 40px;
+            margin-top: 16px;
+        }
+        .hv-bar {
+            flex: 1;
+            background: var(--border);
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        .hv-bar.hi { background: var(--accent); }
+        .hv-bar.mid { background: rgba(255,189,89,0.5); }
+        .hv-dot-row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-top: 14px;
+        }
+        .hv-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+        .hv-dot.off { background: var(--border); }
+        .hv-dot-label { font-size: 0.8rem; color: var(--muted); font-weight: 500; }
+
+        /* Hero bottom bar */
+        .hero__bar {
+            border-top: 1px solid var(--border);
+            padding-block: 36px;
+        }
+        .hero__stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .hstat__label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--muted);
+            margin-bottom: 6px;
+        }
+        .hstat__value {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 700;
+        }
+
+        @media (max-width: 1000px) {
+            .hero__main { grid-template-columns: 1fr; }
+            .hero__visual { display: none; }
+        }
+        @media (max-width: 600px) {
+            .hero__stats { grid-template-columns: 1fr; gap: 16px; }
+        }
+
+        /* ─────────────────────────────────────────────
+           MISSION (dark)
+        ───────────────────────────────────────────── */
+        .mission {
+            background: var(--black);
+            color: var(--white);
+        }
+        .mission__inner {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+        .mission__label { color: rgba(255,255,255,0.35); }
+        .mission__text {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 2.8vw, 2.25rem);
+            font-weight: 500;
+            line-height: 1.45;
+            color: rgba(255,255,255,0.88);
+        }
+        .mission__text strong {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        @media (max-width: 800px) {
+            .mission__inner { grid-template-columns: 1fr; gap: 32px; }
+        }
+
+        /* ─────────────────────────────────────────────
+           PILLARS
+        ───────────────────────────────────────────── */
+        .pillars__header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: end;
+            margin-bottom: 56px;
+        }
+        @media (max-width: 700px) {
+            .pillars__header { grid-template-columns: 1fr; gap: 24px; }
+        }
+        .pillars__sub { color: var(--muted); max-width: 340px; }
+
+        .pillars__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: var(--border);
+        }
+        @media (max-width: 800px) {
+            .pillars__grid { grid-template-columns: 1fr; }
+        }
+
+        .pillar {
+            background: var(--bg);
+            padding: 48px 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            transition: background 0.22s ease;
+            cursor: default;
+        }
+        .pillar:hover { background: var(--white); }
+
+        .pillar__num {
+            font-family: var(--font-display);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+        }
+        .pillar__icon {
+            width: 44px; height: 44px;
+            background: var(--black);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .pillar__title { /* uses .t-h3 */ }
+        .pillar__body { color: #666; font-size: 0.9375rem; line-height: 1.68; }
+
+        /* ─────────────────────────────────────────────
+           LITERACY (dark)
+        ───────────────────────────────────────────── */
+        .literacy {
+            background: var(--black);
+            color: var(--white);
+        }
+        .literacy__inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+        @media (max-width: 900px) {
+            .literacy__inner { grid-template-columns: 1fr; gap: 48px; }
+        }
+        .literacy__label { color: rgba(255,255,255,0.35); }
+        .literacy__heading { color: var(--white); margin: 20px 0 24px; }
+        .literacy__body {
+            color: rgba(255,255,255,0.62);
+            font-size: 1.0625rem;
+            line-height: 1.72;
+        }
+        .literacy__body strong {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        .literacy__cta { margin-top: 36px; }
+
+        .lit-features {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+            background: rgba(255,255,255,0.07);
+        }
+        .lit-feat {
+            background: var(--black);
+            padding: 28px 30px;
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            transition: background 0.2s;
+            cursor: default;
+        }
+        .lit-feat:hover { background: rgba(255,255,255,0.03); }
+        .lit-feat__ico {
+            width: 38px; height: 38px;
+            background: rgba(255, 189, 89, 0.12);
+            border: 1px solid rgba(255, 189, 89, 0.2);
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .lit-feat__title {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 5px;
+        }
+        .lit-feat__body {
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.6;
+        }
+
+        /* ─────────────────────────────────────────────
+           PROCESS
+        ───────────────────────────────────────────── */
+        .process__header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: end;
+            margin-bottom: 56px;
+        }
+        @media (max-width: 700px) {
+            .process__header { grid-template-columns: 1fr; gap: 24px; }
+        }
+
+        .process__steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+            background: var(--border);
+        }
+        @media (max-width: 900px) {
+            .process__steps { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .process__steps { grid-template-columns: 1fr; }
+        }
+
+        .pstep {
+            background: var(--bg);
+            padding: 40px 32px 44px;
+            position: relative;
+            overflow: hidden;
+            transition: background 0.2s;
+            cursor: default;
+        }
+        .pstep:hover { background: var(--white); }
+        .pstep__bg-num {
+            position: absolute;
+            inset-block-end: -24px;
+            inset-inline-end: 16px;
+            font-family: var(--font-display);
+            font-size: 7rem;
+            font-weight: 700;
+            color: rgba(17,17,17,0.04);
+            line-height: 1;
+            pointer-events: none;
+            user-select: none;
+        }
+        .pstep__num {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        .pstep__title {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+        }
+        .pstep__body { font-size: 0.9rem; color: #666; line-height: 1.65; }
+
+        /* ─────────────────────────────────────────────
+           CTA BAND
+        ───────────────────────────────────────────── */
+        .cta-band {
+            background: var(--accent);
+            padding-block: clamp(60px, 8vw, 100px);
+        }
+        .cta-band__inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+        @media (max-width: 700px) {
+            .cta-band__inner { flex-direction: column; text-align: center; }
+        }
+        .cta-band__heading {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 3.5vw, 3rem);
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            line-height: 1.1;
+            color: var(--black);
+        }
+        .cta-band__sub {
+            margin-top: 12px;
+            font-size: 1rem;
+            color: rgba(17,17,17,0.65);
+        }
+        .cta-band__actions { flex-shrink: 0; display: flex; gap: 12px; }
+
+        /* ─────────────────────────────────────────────
+           FOOTER
+        ───────────────────────────────────────────── */
+        .footer {
+            background: var(--black);
+            padding-block: 48px;
+        }
+        .footer__inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .footer__logo-text {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: var(--white);
+            line-height: 1;
+        }
+        .footer__logo-text .ai { color: var(--accent); }
+        .footer__copy {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.35);
+        }
+        .footer__links {
+            display: flex;
+            gap: 24px;
+        }
+        .footer__links a {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.35);
+            transition: color 0.2s;
+        }
+        .footer__links a:hover { color: rgba(255,255,255,0.8); }
+
+        /* ─────────────────────────────────────────────
+           DIVIDER
+        ───────────────────────────────────────────── */
+        .divider { border: none; border-top: 1px solid var(--border); }
+
+        /* ─────────────────────────────────────────────
+           SCROLL FADE
+        ───────────────────────────────────────────── */
+        @media (prefers-reduced-motion: no-preference) {
+            .reveal {
+                opacity: 0;
+                transform: translateY(28px);
+                transition: opacity 0.65s ease, transform 0.65s ease;
+            }
+            .reveal.in { opacity: 1; transform: translateY(0); }
+            .reveal-delay-1 { transition-delay: 0.1s; }
+            .reveal-delay-2 { transition-delay: 0.2s; }
+            .reveal-delay-3 { transition-delay: 0.3s; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     NAV
+═══════════════════════════════════════════════ -->
+<header class="nav" id="nav">
+    <div class="nav__inner">
+        <a href="#" class="nav__logo" aria-label="Lineaire home">Line<span class="ai">ai</span>re.</a>
+        <nav class="nav__links" aria-label="Main navigation">
+            <ul class="nav-text-links" style="display:flex;gap:36px;list-style:none;">
+                <li><a href="#what-we-do">What we do</a></li>
+                <li><a href="#ai-literacy">AI Literacy</a></li>
+                <li><a href="#process">Process</a></li>
+            </ul>
+            <a href="#contact" class="btn btn-dark">Get in touch</a>
+        </nav>
+    </div>
+</header>
+
+
+<!-- ═══════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════ -->
+<section class="hero" aria-labelledby="hero-heading">
+    <div class="wrap">
+        <div class="hero__main">
+
+            <!-- Left: copy -->
+            <div class="hero__copy">
+<h1 class="t-display hero__heading" id="hero-heading">
+                    Get your business<br>
+                    ready for the<br>
+                    <span class="accent">AI era.</span>
+                </h1>
+                <p class="t-body hero__sub">
+                    We design secure and efficient AI automations that allow you to reclaim time, decrease costs and maintain full control over your operations.
+                </p>
+                <div class="hero__ctas">
+                    <a href="#contact" class="btn btn-accent">Let's talk &nbsp;→</a>
+                    <a href="#what-we-do" class="btn btn-ghost">Learn more</a>
+                </div>
+            </div>
+
+            <!-- Right: abstract cards -->
+            <div class="hero__visual" aria-hidden="true">
+                <div class="hv-card">
+                    <div class="hv-card__label">Automation health</div>
+                    <div class="hv-card__row">
+                        <div class="hv-card__value">98.4%</div>
+                        <div class="hv-badge">↑ Uptime</div>
+                    </div>
+                    <div class="hv-bars">
+                        <div class="hv-bar mid" style="height:50%"></div>
+                        <div class="hv-bar" style="height:65%"></div>
+                        <div class="hv-bar mid" style="height:45%"></div>
+                        <div class="hv-bar hi" style="height:90%"></div>
+                        <div class="hv-bar hi" style="height:100%"></div>
+                        <div class="hv-bar hi" style="height:88%"></div>
+                        <div class="hv-bar mid" style="height:70%"></div>
+                        <div class="hv-bar hi" style="height:95%"></div>
+                    </div>
+                </div>
+
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+                    <div class="hv-card">
+                        <div class="hv-card__label">Time reclaimed</div>
+                        <div class="hv-card__value" style="font-size:1.6rem;">12h</div>
+                        <div class="hv-card__sub">per team / week</div>
+                    </div>
+                    <div class="hv-card">
+                        <div class="hv-card__label">Cost reduction</div>
+                        <div class="hv-card__value" style="font-size:1.6rem;">-40%</div>
+                        <div class="hv-card__sub">ops overhead</div>
+                    </div>
+                </div>
+
+                <div class="hv-card">
+                    <div class="hv-card__label">Active pipelines</div>
+                    <div class="hv-dot-row">
+                        <div class="hv-dot"></div>
+                        <div class="hv-dot-label">Document ingestion</div>
+                    </div>
+                    <div class="hv-dot-row">
+                        <div class="hv-dot"></div>
+                        <div class="hv-dot-label">Reporting agent</div>
+                    </div>
+                    <div class="hv-dot-row">
+                        <div class="hv-dot"></div>
+                        <div class="hv-dot-label">Triage classifier</div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /hero__main -->
+    </div><!-- /wrap -->
+
+    <!-- Bottom stats bar -->
+    <div class="hero__bar">
+        <div class="wrap">
+            <div class="hero__stats">
+                <div class="hstat">
+                    <div class="hstat__label">Our focus</div>
+                    <div class="hstat__value">AI Automation</div>
+                </div>
+                <div class="hstat">
+                    <div class="hstat__label">Strategic goal</div>
+                    <div class="hstat__value">AI Literacy</div>
+                </div>
+                <div class="hstat">
+                    <div class="hstat__label">Core principle</div>
+                    <div class="hstat__value">Full Control</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     MISSION
+═══════════════════════════════════════════════ -->
+<section class="section mission" id="what-we-do" aria-label="Our mission">
+    <div class="wrap">
+        <div class="mission__inner">
+            <div>
+                <span class="eyebrow mission__label">Our mission</span>
+            </div>
+            <blockquote class="mission__text">
+                We design secure and efficient AI automations that allow you to <strong>reclaim time</strong>, <strong>decrease costs</strong> and maintain <strong>full control over your operations</strong>.
+            </blockquote>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     PILLARS
+═══════════════════════════════════════════════ -->
+<section class="section" aria-labelledby="pillars-heading">
+    <div class="wrap">
+        <div class="pillars__header">
+            <div>
+                <span class="eyebrow">What we deliver</span>
+                <h2 class="t-h1" id="pillars-heading">Three outcomes that transform how you operate.</h2>
+            </div>
+            <p class="pillars__sub t-body" style="color:var(--muted);">
+                Every engagement is measured against the same standard: does it free your people, lower your costs, and keep you in control?
+            </p>
+        </div>
+    </div>
+
+    <div class="wrap" style="padding-inline:0;">
+        <div style="padding-inline:var(--pad);">
+            <div class="pillars__grid">
+
+                <article class="pillar">
+                    <span class="pillar__num">01</span>
+                    <div class="pillar__icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffbd59" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                    </div>
+                    <h3 class="t-h3">Reclaim Time</h3>
+                    <p class="pillar__body">Automate repetitive, high-volume tasks so your team can focus on decisions that actually require human judgment — not busywork.</p>
+                </article>
+
+                <article class="pillar">
+                    <span class="pillar__num">02</span>
+                    <div class="pillar__icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffbd59" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="1" x2="12" y2="23"/>
+                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                        </svg>
+                    </div>
+                    <h3 class="t-h3">Decrease Costs</h3>
+                    <p class="pillar__body">Replace expensive manual workflows with reliable AI pipelines — without sacrificing quality, compliance or operational visibility.</p>
+                </article>
+
+                <article class="pillar">
+                    <span class="pillar__num">03</span>
+                    <div class="pillar__icon" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffbd59" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <h3 class="t-h3">Full Control</h3>
+                    <p class="pillar__body">We build with observability and governance at the core — so you always know what your AI is doing, why it decided that, and how to intervene.</p>
+                </article>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     AI LITERACY
+═══════════════════════════════════════════════ -->
+<section class="section literacy" id="ai-literacy" aria-labelledby="literacy-heading">
+    <div class="wrap">
+        <div class="literacy__inner">
+
+            <div>
+                <span class="eyebrow literacy__label">AI Literacy</span>
+                <h2 class="t-h1 literacy__heading" id="literacy-heading">A strategic capability, not a buzzword.</h2>
+                <p class="literacy__body">
+                    We cultivate organizational AI literacy as a <strong>strategic capability</strong>, equipping your team to understand system behavior, anticipate failures and run AI workloads reliably at scale.
+                </p>
+                <p class="literacy__body" style="margin-top:20px;">
+                    The gap between companies that succeed with AI and those that don't isn't the technology — it's whether the people running it actually understand it.
+                </p>
+                <div class="literacy__cta">
+                    <a href="#contact" class="btn btn-ghost-light">Talk to us about training →</a>
+                </div>
+            </div>
+
+            <div class="lit-features" role="list">
+
+                <div class="lit-feat" role="listitem">
+                    <div class="lit-feat__ico" aria-hidden="true">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ffbd59" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 16v-4M12 8h.01"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="lit-feat__title">Understand System Behavior</div>
+                        <p class="lit-feat__body">Teams learn to read, interpret and challenge AI outputs — not just consume them blindly.</p>
+                    </div>
+                </div>
+
+                <div class="lit-feat" role="listitem">
+                    <div class="lit-feat__ico" aria-hidden="true">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ffbd59" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                            <line x1="12" y1="9" x2="12" y2="13"/>
+                            <line x1="12" y1="17" x2="12.01" y2="17"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="lit-feat__title">Anticipate Failures</div>
+                        <p class="lit-feat__body">Build intuition for where AI breaks down — and design processes that handle it gracefully before it becomes a crisis.</p>
+                    </div>
+                </div>
+
+                <div class="lit-feat" role="listitem">
+                    <div class="lit-feat__ico" aria-hidden="true">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ffbd59" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                            <line x1="8" y1="21" x2="16" y2="21"/>
+                            <line x1="12" y1="17" x2="12" y2="21"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="lit-feat__title">Run AI at Scale</div>
+                        <p class="lit-feat__body">Operate AI workloads reliably in production — with the confidence that your team knows what to do when things go wrong.</p>
+                    </div>
+                </div>
+
+                <div class="lit-feat" role="listitem">
+                    <div class="lit-feat__ico" aria-hidden="true">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ffbd59" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="lit-feat__title">Embed AI Fluency Organization-Wide</div>
+                        <p class="lit-feat__body">From executives to operators — build a shared language for AI that accelerates adoption and reduces risk.</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     PROCESS
+═══════════════════════════════════════════════ -->
+<section class="section" id="process" aria-labelledby="process-heading">
+    <div class="wrap">
+        <div class="process__header">
+            <div>
+                <span class="eyebrow">How we work</span>
+                <h2 class="t-h1" id="process-heading">From first conversation to reliable production.</h2>
+            </div>
+            <p class="t-body" style="color:var(--muted);max-width:340px;">
+                A rigorous, repeatable process — so you always know where we are, what comes next, and what success looks like.
+            </p>
+        </div>
+
+        <div class="process__steps">
+
+            <div class="pstep">
+                <div class="pstep__bg-num" aria-hidden="true">01</div>
+                <div class="pstep__num">Step 01</div>
+                <h3 class="pstep__title">Discover</h3>
+                <p class="pstep__body">We map your operations, identify high-value automation opportunities and define clear, measurable success criteria.</p>
+            </div>
+
+            <div class="pstep">
+                <div class="pstep__bg-num" aria-hidden="true">02</div>
+                <div class="pstep__num">Step 02</div>
+                <h3 class="pstep__title">Design</h3>
+                <p class="pstep__body">We architect a secure, efficient solution — selecting the right models, tools and integration patterns for your specific context.</p>
+            </div>
+
+            <div class="pstep">
+                <div class="pstep__bg-num" aria-hidden="true">03</div>
+                <div class="pstep__num">Step 03</div>
+                <h3 class="pstep__title">Deploy</h3>
+                <p class="pstep__body">We build and ship with observability, testing and governance built in from day one — not bolted on after the fact.</p>
+            </div>
+
+            <div class="pstep">
+                <div class="pstep__bg-num" aria-hidden="true">04</div>
+                <div class="pstep__num">Step 04</div>
+                <h3 class="pstep__title">Empower</h3>
+                <p class="pstep__body">We equip your team to understand, maintain and evolve your AI systems — turning external dependence into internal capability.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     CTA
+═══════════════════════════════════════════════ -->
+<section class="cta-band" id="contact" aria-labelledby="cta-heading">
+    <div class="wrap">
+        <div class="cta-band__inner">
+            <div>
+                <h2 class="cta-band__heading" id="cta-heading">
+                    Ready to build your<br>AI-ready business?
+                </h2>
+                <p class="cta-band__sub">Let's start with a conversation. No decks, no pressure.</p>
+            </div>
+            <div class="cta-band__actions">
+                <a href="mailto:hello@lineaire.ai" class="btn btn-dark">Get in touch &nbsp;→</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════ -->
+<footer class="footer">
+    <div class="wrap">
+        <div class="footer__inner">
+            <span class="footer__logo-text">Line<span class="ai">ai</span>re.</span>
+            <p class="footer__copy">© 2025 Lineaire. All rights reserved.</p>
+            <nav class="footer__links" aria-label="Footer navigation">
+                <a href="#what-we-do">What we do</a>
+                <a href="#ai-literacy">AI Literacy</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════════
+     JS — minimal, no dependencies
+═══════════════════════════════════════════════ -->
+<script>
+    // Scroll-reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    if (revealEls.length) {
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('in');
+                    io.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.12 });
+        revealEls.forEach(el => io.observe(el));
+    }
+
+    // Nav shadow on scroll
+    const nav = document.getElementById('nav');
+    let lastY = 0;
+    window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        nav.style.borderBottomColor = y > 10
+            ? 'rgba(17,17,17,0.14)'
+            : 'rgba(17,17,17,0.08)';
+        lastY = y;
+    }, { passive: true });
+</script>
+
+</body>
+</html>

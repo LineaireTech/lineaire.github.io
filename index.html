@@ -297,10 +297,9 @@
             color: var(--white);
         }
         .mission__inner {
-            display: grid;
-            grid-template-columns: 220px 1fr;
-            gap: 80px;
-            align-items: start;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
         }
         .mission__label { color: rgba(255,255,255,0.35); }
         .mission__text {
@@ -313,10 +312,6 @@
         .mission__text strong {
             color: var(--accent);
             font-weight: 700;
-        }
-
-        @media (max-width: 800px) {
-            .mission__inner { grid-template-columns: 1fr; gap: 32px; }
         }
 
         /* ─────────────────────────────────────────────
@@ -676,9 +671,7 @@
 <section class="section mission" id="what-we-do" aria-label="Our mission">
     <div class="wrap">
         <div class="mission__inner">
-            <div>
-                <span class="eyebrow mission__label">Our mission</span>
-            </div>
+            <span class="eyebrow mission__label">Our mission</span>
             <blockquote class="mission__text">
                 We design secure and efficient AI automations that allow you to <strong>reclaim time</strong>, <strong>decrease costs</strong> and maintain <strong>full control over your operations</strong>.
             </blockquote>

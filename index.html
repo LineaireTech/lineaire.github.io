@@ -247,82 +247,15 @@
 
         /* Hero visual */
         .hero__visual {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-        .hv-card {
-            background: var(--white);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 22px 24px;
-            box-shadow: 0 2px 16px rgba(0,0,0,0.06);
-        }
-        .hv-card__label {
-            font-size: 0.72rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--muted);
-            margin-bottom: 10px;
-        }
-        .hv-card__value {
-            font-family: var(--font-display);
-            font-size: 1.85rem;
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            line-height: 1;
-        }
-        .hv-card__sub {
-            font-size: 0.82rem;
-            color: var(--muted);
-            margin-top: 4px;
-        }
-        .hv-card__row {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
         }
-        .hv-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 0.72rem;
-            font-weight: 700;
-            padding: 4px 10px;
-            border-radius: 100px;
-            background: rgba(255,189,89,0.18);
-            color: #8a6200;
+        .hero__visual img {
+            width: 100%;
+            max-width: 480px;
+            height: auto;
         }
-        .hv-bars {
-            display: flex;
-            align-items: flex-end;
-            gap: 6px;
-            height: 40px;
-            margin-top: 16px;
-        }
-        .hv-bar {
-            flex: 1;
-            background: var(--border);
-            border-radius: 4px;
-            transition: background 0.3s;
-        }
-        .hv-bar.hi { background: var(--accent); }
-        .hv-bar.mid { background: rgba(255,189,89,0.5); }
-        .hv-dot-row {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            margin-top: 14px;
-        }
-        .hv-dot {
-            width: 8px; height: 8px;
-            border-radius: 50%;
-            background: var(--accent);
-        }
-        .hv-dot.off { background: var(--border); }
-        .hv-dot-label { font-size: 0.8rem; color: var(--muted); font-weight: 500; }
 
         /* Hero bottom bar */
         .hero__bar {
@@ -707,54 +640,9 @@
                 </div>
             </div>
 
-            <!-- Right: abstract cards -->
+            <!-- Right: illustration -->
             <div class="hero__visual" aria-hidden="true">
-                <div class="hv-card">
-                    <div class="hv-card__label">Automation health</div>
-                    <div class="hv-card__row">
-                        <div class="hv-card__value">98.4%</div>
-                        <div class="hv-badge">↑ Uptime</div>
-                    </div>
-                    <div class="hv-bars">
-                        <div class="hv-bar mid" style="height:50%"></div>
-                        <div class="hv-bar" style="height:65%"></div>
-                        <div class="hv-bar mid" style="height:45%"></div>
-                        <div class="hv-bar hi" style="height:90%"></div>
-                        <div class="hv-bar hi" style="height:100%"></div>
-                        <div class="hv-bar hi" style="height:88%"></div>
-                        <div class="hv-bar mid" style="height:70%"></div>
-                        <div class="hv-bar hi" style="height:95%"></div>
-                    </div>
-                </div>
-
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
-                    <div class="hv-card">
-                        <div class="hv-card__label">Time reclaimed</div>
-                        <div class="hv-card__value" style="font-size:1.6rem;">12h</div>
-                        <div class="hv-card__sub">per team / week</div>
-                    </div>
-                    <div class="hv-card">
-                        <div class="hv-card__label">Cost reduction</div>
-                        <div class="hv-card__value" style="font-size:1.6rem;">-40%</div>
-                        <div class="hv-card__sub">ops overhead</div>
-                    </div>
-                </div>
-
-                <div class="hv-card">
-                    <div class="hv-card__label">Active pipelines</div>
-                    <div class="hv-dot-row">
-                        <div class="hv-dot"></div>
-                        <div class="hv-dot-label">Document ingestion</div>
-                    </div>
-                    <div class="hv-dot-row">
-                        <div class="hv-dot"></div>
-                        <div class="hv-dot-label">Reporting agent</div>
-                    </div>
-                    <div class="hv-dot-row">
-                        <div class="hv-dot"></div>
-                        <div class="hv-dot-label">Triage classifier</div>
-                    </div>
-                </div>
+                <img src="undraw_fast-changing-world_3ee6.svg" alt="">
             </div>
 
         </div><!-- /hero__main -->

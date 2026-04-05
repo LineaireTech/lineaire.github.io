@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Generic AI Doesn't Pay, and What Does — Lineaire</title>
+    <meta name="description" content="">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg:      #f6f4f0;
+            --black:   #111111;
+            --accent:  #ffbd59;
+            --white:   #ffffff;
+            --muted:   #6b6860;
+            --border:  rgba(17, 17, 17, 0.10);
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body:    'Outfit', sans-serif;
+            --nav-h:   68px;
+            --wrap:    1160px;
+            --pad:     clamp(24px, 4vw, 48px);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--black);
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        img { display: block; max-width: 100%; }
+        a { text-decoration: none; color: inherit; }
+
+        .wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: var(--pad); }
+
+        /* NAV */
+        .nav {
+            position: fixed;
+            inset-block-start: 0;
+            inset-inline: 0;
+            height: var(--nav-h);
+            background: rgba(246, 244, 240, 0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            z-index: 200;
+        }
+        .nav__inner {
+            max-width: var(--wrap);
+            margin-inline: auto;
+            padding-inline: var(--pad);
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav__logo {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: var(--black);
+            line-height: 1;
+        }
+        .nav__logo .ai { color: var(--accent); }
+        .nav__links { display: flex; align-items: center; gap: 36px; }
+        .nav__links a:not(.btn) {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--black);
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+        .nav__links a:not(.btn):hover { opacity: 1; }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 28px;
+            border-radius: 7px;
+            font-family: var(--font-body);
+            font-size: 0.9375rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.18s ease, background 0.18s ease;
+        }
+        .btn:hover { transform: translateY(-2px); }
+        .btn-dark { background: var(--black); color: var(--white); }
+        .btn-dark:hover { background: #2a2a2a; }
+        @media (max-width: 700px) { .nav__links .nav-text-links { display: none; } }
+
+        /* POST HEADER */
+        .post-header {
+            background: var(--black);
+            color: var(--white);
+            padding-top: var(--nav-h);
+        }
+        .post-header__inner {
+            padding-block: clamp(64px, 10vw, 112px);
+            max-width: 760px;
+        }
+        .post-header__back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.45);
+            margin-bottom: 32px;
+            transition: color 0.2s;
+        }
+        .post-header__back:hover { color: rgba(255,255,255,0.85); }
+        .post-header__cat {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--accent);
+            color: var(--black);
+            padding: 5px 12px;
+            border-radius: 100px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 24px;
+        }
+        .post-header__title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3.75rem);
+            font-weight: 700;
+            line-height: 1.08;
+            letter-spacing: -0.03em;
+            color: var(--white);
+            margin-bottom: 28px;
+        }
+        .post-header__meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.4);
+            flex-wrap: wrap;
+        }
+        .post-header__meta-dot { width: 3px; height: 3px; background: rgba(255,255,255,0.3); border-radius: 50%; }
+
+        /* ARTICLE */
+        .article-wrap {
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 80px;
+            align-items: start;
+            padding-block: clamp(60px, 8vw, 100px);
+        }
+        @media (max-width: 900px) {
+            .article-wrap { grid-template-columns: 1fr; gap: 48px; }
+            .article-sidebar { order: -1; }
+        }
+
+        .article-body { max-width: 680px; }
+        .article-body p {
+            font-size: 1.0625rem;
+            line-height: 1.78;
+            color: #2a2a2a;
+            margin-bottom: 24px;
+        }
+        .article-body h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.35rem, 2vw, 1.75rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-top: 52px;
+            margin-bottom: 20px;
+            color: var(--black);
+        }
+        .article-body h3 {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            margin-top: 36px;
+            margin-bottom: 14px;
+        }
+        .article-body strong { font-weight: 700; color: var(--black); }
+        .article-body em { font-style: italic; }
+        .article-body ul, .article-body ol {
+            margin-bottom: 24px;
+            padding-left: 0;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .article-body ul li, .article-body ol li {
+            font-size: 1.0625rem;
+            line-height: 1.72;
+            color: #2a2a2a;
+            padding-left: 24px;
+            position: relative;
+        }
+        .article-body ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 11px;
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+        .article-body ol { counter-reset: ol-counter; }
+        .article-body ol li { counter-increment: ol-counter; }
+        .article-body ol li::before {
+            content: counter(ol-counter) ".";
+            position: absolute;
+            left: 0;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--accent);
+            top: 3px;
+        }
+        .article-body blockquote {
+            border-left: 3px solid var(--accent);
+            padding: 20px 28px;
+            margin: 36px 0;
+            background: rgba(255,189,89,0.06);
+            border-radius: 0 8px 8px 0;
+        }
+        .article-body blockquote p {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 500;
+            line-height: 1.55;
+            color: var(--black);
+            margin-bottom: 0;
+            font-style: italic;
+        }
+        .article-body hr {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 48px 0;
+        }
+
+        /* Sidebar */
+        .article-sidebar { position: sticky; top: calc(var(--nav-h) + 32px); }
+        .sidebar-toc {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px 28px;
+        }
+        .sidebar-toc__label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--muted);
+            margin-bottom: 16px;
+        }
+        .sidebar-toc ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+        .sidebar-toc a { font-size: 0.875rem; color: #555; transition: color 0.2s; display: block; line-height: 1.4; }
+        .sidebar-toc a:hover { color: var(--black); }
+
+        /* POST FOOTER */
+        .post-footer { border-top: 1px solid var(--border); padding-block: 48px; }
+        .post-footer__back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--muted);
+            transition: color 0.2s;
+        }
+        .post-footer__back:hover { color: var(--black); }
+
+        /* CTA BAND */
+        .cta-band { background: var(--accent); padding-block: clamp(60px, 8vw, 100px); }
+        .cta-band__inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+        @media (max-width: 700px) { .cta-band__inner { flex-direction: column; text-align: center; } }
+        .cta-band__heading {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 3.5vw, 3rem);
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            line-height: 1.1;
+            color: var(--black);
+        }
+        .cta-band__sub { margin-top: 12px; font-size: 1rem; color: rgba(17,17,17,0.65); }
+
+        /* FOOTER */
+        .footer { background: var(--black); padding-block: 48px; }
+        .footer__inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .footer__logo-text {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: var(--white);
+            line-height: 1;
+        }
+        .footer__logo-text .ai { color: var(--accent); }
+        .footer__copy { font-size: 0.82rem; color: rgba(255,255,255,0.35); }
+        .footer__links { display: flex; gap: 24px; }
+        .footer__links a { font-size: 0.82rem; color: rgba(255,255,255,0.35); transition: color 0.2s; }
+        .footer__links a:hover { color: rgba(255,255,255,0.8); }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+    <div class="nav__inner">
+        <a href="/" class="nav__logo" aria-label="Lineaire home">Line<span class="ai">ai</span>re.</a>
+        <nav class="nav__links" aria-label="Main navigation">
+            <ul class="nav-text-links" style="display:flex;gap:36px;list-style:none;">
+                <li><a href="/#what-we-do">What we do</a></li>
+                <li><a href="/#ai-literacy">AI Literacy</a></li>
+                <li><a href="/#process">Process</a></li>
+                <li><a href="/blog.html">Blog</a></li>
+            </ul>
+            <a href="/#contact" class="btn btn-dark">Get in touch</a>
+        </nav>
+    </div>
+</header>
+
+
+<!-- POST HEADER -->
+<div class="post-header">
+    <div class="wrap">
+        <div class="post-header__inner">
+            <a href="/blog.html" class="post-header__back">← All articles</a>
+            <div class="post-header__cat">Strategy</div>
+            <h1 class="post-header__title">Why Generic AI Doesn't Pay, and What Does</h1>
+            <div class="post-header__meta">
+                <span>Lineaire Team</span>
+                <span class="post-header__meta-dot"></span>
+                <span>April 5, 2026</span>
+                <span class="post-header__meta-dot"></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ARTICLE -->
+<div class="wrap">
+    <div class="article-wrap">
+
+        <article class="article-body">
+            <!-- CONTENT -->
+        </article>
+
+        <aside class="article-sidebar">
+            <div class="sidebar-toc">
+                <div class="sidebar-toc__label">In this article</div>
+                <ul>
+                    <!-- TOC ITEMS -->
+                </ul>
+            </div>
+        </aside>
+
+    </div>
+</div>
+
+
+<!-- POST FOOTER -->
+<div class="wrap">
+    <div class="post-footer">
+        <a href="/blog.html" class="post-footer__back">← Back to all articles</a>
+    </div>
+</div>
+
+
+<!-- CTA -->
+<section class="cta-band">
+    <div class="wrap">
+        <div class="cta-band__inner">
+            <div>
+                <h2 class="cta-band__heading">Ready to build your<br>AI-ready business?</h2>
+                <p class="cta-band__sub">Let's start with a conversation. No decks, no pressure.</p>
+            </div>
+            <a href="mailto:hello@lineaire.ai" class="btn btn-dark">Get in touch &nbsp;→</a>
+        </div>
+    </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="wrap">
+        <div class="footer__inner">
+            <span class="footer__logo-text">Line<span class="ai">ai</span>re.</span>
+            <p class="footer__copy">© 2026 Lineaire. All rights reserved.</p>
+            <nav class="footer__links" aria-label="Footer navigation">
+                <a href="/#what-we-do">What we do</a>
+                <a href="/#ai-literacy">AI Literacy</a>
+                <a href="/#process">Process</a>
+                <a href="/#contact">Contact</a>
+            </nav>
+        </div>
+    </div>
+</footer>
+
+<script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+        nav.style.borderBottomColor = window.scrollY > 10
+            ? 'rgba(17,17,17,0.14)'
+            : 'rgba(17,17,17,0.08)';
+    }, { passive: true });
+</script>
+
+</body>
+</html>

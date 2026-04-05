@@ -151,27 +151,38 @@
             .page-header__desc { max-width: none; }
         }
 
-        /* COMING SOON */
-        .coming-soon {
-            padding-block: clamp(80px, 12vw, 160px);
+        /* POST CARD */
+        .post-card {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 20px;
+            gap: 12px;
+            padding: 32px 0;
+            border-bottom: 1px solid var(--border);
+            transition: opacity 0.2s;
         }
-        .coming-soon__title {
-            font-family: var(--font-display);
-            font-size: clamp(1.5rem, 3vw, 2.25rem);
+        .post-card:first-child { border-top: 1px solid var(--border); }
+        .post-card:hover { opacity: 0.7; }
+        .post-card__cat {
+            display: inline-flex;
+            font-size: 0.7rem;
             font-weight: 700;
-            letter-spacing: -0.025em;
+            text-transform: uppercase;
+            letter-spacing: 0.09em;
+            color: #8a6200;
+            background: rgba(255,189,89,0.18);
+            padding: 4px 10px;
+            border-radius: 100px;
+            align-self: flex-start;
         }
-        .coming-soon__sub {
-            font-size: 1rem;
-            color: var(--muted);
-            max-width: 380px;
-            line-height: 1.65;
+        .post-card__title {
+            font-family: var(--font-display);
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            color: var(--black);
         }
+        .post-card__meta { font-size: 0.82rem; color: var(--muted); }
 
         /* FOOTER */
         .footer { background: var(--black); padding-block: 48px; }
@@ -232,12 +243,13 @@
 </div>
 
 
-<!-- COMING SOON -->
-<div class="wrap">
-    <div class="coming-soon">
-        <p class="coming-soon__title">Coming soon.</p>
-        <p class="coming-soon__sub">Articles are on their way. Check back shortly.</p>
-    </div>
+<!-- POST LIST -->
+<div class="wrap" style="padding-block: clamp(64px, 8vw, 112px);">
+    <a href="/blog/why-generic-ai-doesnt-pay.html" class="post-card">
+        <span class="post-card__cat">Strategy</span>
+        <h2 class="post-card__title">Why Generic AI Doesn't Pay, and What Does</h2>
+        <div class="post-card__meta">Lineaire Team &nbsp;·&nbsp; April 5, 2026</div>
+    </a>
 </div>
 
 

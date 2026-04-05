@@ -11,7 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* ─── TOKENS ─── */
         :root {
             --bg:      #f6f4f0;
             --black:   #111111;
@@ -24,10 +23,8 @@
             --nav-h:   68px;
             --wrap:    1160px;
             --pad:     clamp(24px, 4vw, 48px);
-            --sec:     clamp(64px, 8vw, 112px);
         }
 
-        /* ─── RESET ─── */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
         body {
@@ -39,36 +36,10 @@
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
         }
-        img { display: block; max-width: 100%; }
         a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
 
-        /* ─── LAYOUT ─── */
         .wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: var(--pad); }
-        .section { padding-block: var(--sec); }
 
-        /* ─── TYPE ─── */
-        .t-display {
-            font-family: var(--font-display);
-            font-size: clamp(2.8rem, 6vw, 5.5rem);
-            font-weight: 700;
-            line-height: 1.0;
-            letter-spacing: -0.035em;
-        }
-        .t-h1 {
-            font-family: var(--font-display);
-            font-size: clamp(1.75rem, 3.5vw, 3rem);
-            font-weight: 700;
-            line-height: 1.1;
-            letter-spacing: -0.025em;
-        }
-        .t-h2 {
-            font-family: var(--font-display);
-            font-size: clamp(1.25rem, 2vw, 1.65rem);
-            font-weight: 700;
-            line-height: 1.2;
-            letter-spacing: -0.02em;
-        }
         .eyebrow {
             display: inline-flex;
             align-items: center;
@@ -87,7 +58,6 @@
             flex-shrink: 0;
         }
 
-        /* ─── BUTTONS ─── */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -99,15 +69,13 @@
             font-weight: 600;
             border: none;
             cursor: pointer;
-            transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+            transition: transform 0.18s ease, background 0.18s ease;
         }
         .btn:hover { transform: translateY(-2px); }
         .btn-dark { background: var(--black); color: var(--white); }
-        .btn-dark:hover { background: #2a2a2a; box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
-        .btn-accent { background: var(--accent); color: var(--black); }
-        .btn-accent:hover { background: #f5b347; box-shadow: 0 8px 24px rgba(255,189,89,0.4); }
+        .btn-dark:hover { background: #2a2a2a; }
 
-        /* ─── NAV ─── */
+        /* NAV */
         .nav {
             position: fixed;
             inset-block-start: 0;
@@ -149,7 +117,7 @@
         .nav__links a.active { opacity: 1; }
         @media (max-width: 700px) { .nav__links .nav-text-links { display: none; } }
 
-        /* ─── PAGE HEADER ─── */
+        /* PAGE HEADER */
         .page-header {
             background: var(--black);
             color: var(--white);
@@ -163,7 +131,14 @@
             align-items: end;
         }
         .page-header__label { color: rgba(255,255,255,0.35); margin-bottom: 20px; }
-        .page-header__heading { color: var(--white); }
+        .page-header__heading {
+            font-family: var(--font-display);
+            font-size: clamp(2.8rem, 6vw, 5.5rem);
+            font-weight: 700;
+            line-height: 1.0;
+            letter-spacing: -0.035em;
+            color: var(--white);
+        }
         .page-header__desc {
             color: rgba(255,255,255,0.55);
             font-size: 1.0625rem;
@@ -176,205 +151,29 @@
             .page-header__desc { max-width: none; }
         }
 
-        /* ─── FEATURED POST ─── */
-        .featured { padding-block: var(--sec); }
-        .featured__card {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2px;
-            background: var(--border);
-        }
-        @media (max-width: 800px) { .featured__card { grid-template-columns: 1fr; } }
-
-        .featured__image {
-            background: var(--black);
-            min-height: 380px;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: flex-end;
-            padding: 40px;
-        }
-        .featured__image-bg {
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(ellipse at 30% 50%, rgba(255,189,89,0.15) 0%, transparent 60%),
-                var(--black);
-        }
-        .featured__image-label {
-            position: relative;
-            font-family: var(--font-display);
-            font-size: clamp(3rem, 6vw, 5rem);
-            font-weight: 700;
-            color: rgba(255,255,255,0.06);
-            line-height: 1;
-            letter-spacing: -0.04em;
-            user-select: none;
-        }
-        .featured__cat {
-            position: absolute;
-            top: 32px;
-            left: 40px;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--accent);
-            color: var(--black);
-            padding: 5px 12px;
-            border-radius: 100px;
-            font-size: 0.72rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-
-        .featured__content {
-            background: var(--bg);
-            padding: 48px;
+        /* COMING SOON */
+        .coming-soon {
+            padding-block: clamp(80px, 12vw, 160px);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            gap: 32px;
-        }
-        .featured__meta {
-            display: flex;
             align-items: center;
-            gap: 16px;
-            font-size: 0.82rem;
-            color: var(--muted);
+            text-align: center;
+            gap: 20px;
         }
-        .featured__meta-dot { width: 3px; height: 3px; background: var(--muted); border-radius: 50%; }
-        .featured__title {
+        .coming-soon__title {
             font-family: var(--font-display);
-            font-size: clamp(1.5rem, 2.5vw, 2.1rem);
-            font-weight: 700;
-            line-height: 1.15;
-            letter-spacing: -0.02em;
-            margin-bottom: 16px;
-        }
-        .featured__excerpt {
-            color: #555;
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-        .featured__link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: var(--black);
-            transition: gap 0.2s ease;
-        }
-        .featured__link:hover { gap: 14px; }
-
-        /* ─── POST GRID ─── */
-        .posts { padding-block-start: 0; padding-block-end: var(--sec); }
-        .posts__heading {
-            font-family: var(--font-display);
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--muted);
-            margin-bottom: 28px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid var(--border);
-        }
-        .posts__grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2px;
-            background: var(--border);
-        }
-        @media (max-width: 900px) { .posts__grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 560px) { .posts__grid { grid-template-columns: 1fr; } }
-
-        .post-card {
-            background: var(--bg);
-            padding: 36px 32px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            transition: background 0.2s ease;
-            cursor: pointer;
-        }
-        .post-card:hover { background: var(--white); }
-        .post-card__cat {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.09em;
-            color: #8a6200;
-            background: rgba(255,189,89,0.18);
-            padding: 4px 10px;
-            border-radius: 100px;
-            align-self: flex-start;
-        }
-        .post-card__title {
-            font-family: var(--font-display);
-            font-size: 1.1rem;
-            font-weight: 700;
-            line-height: 1.25;
-            letter-spacing: -0.015em;
-        }
-        .post-card__excerpt {
-            font-size: 0.9rem;
-            color: #666;
-            line-height: 1.65;
-            flex: 1;
-        }
-        .post-card__footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding-top: 16px;
-            border-top: 1px solid var(--border);
-            margin-top: auto;
-        }
-        .post-card__meta { font-size: 0.78rem; color: var(--muted); }
-        .post-card__arrow {
-            width: 28px; height: 28px;
-            border: 1.5px solid var(--border);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s, border-color 0.2s;
-        }
-        .post-card:hover .post-card__arrow {
-            background: var(--black);
-            border-color: var(--black);
-        }
-        .post-card:hover .post-card__arrow svg { stroke: var(--white); }
-
-        /* ─── CTA BAND ─── */
-        .cta-band {
-            background: var(--accent);
-            padding-block: clamp(60px, 8vw, 100px);
-        }
-        .cta-band__inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 40px;
-        }
-        @media (max-width: 700px) { .cta-band__inner { flex-direction: column; text-align: center; } }
-        .cta-band__heading {
-            font-family: var(--font-display);
-            font-size: clamp(1.8rem, 3.5vw, 3rem);
+            font-size: clamp(1.5rem, 3vw, 2.25rem);
             font-weight: 700;
             letter-spacing: -0.025em;
-            line-height: 1.1;
-            color: var(--black);
         }
-        .cta-band__sub { margin-top: 12px; font-size: 1rem; color: rgba(17,17,17,0.65); }
+        .coming-soon__sub {
+            font-size: 1rem;
+            color: var(--muted);
+            max-width: 380px;
+            line-height: 1.65;
+        }
 
-        /* ─── FOOTER ─── */
+        /* FOOTER */
         .footer { background: var(--black); padding-block: 48px; }
         .footer__inner {
             display: flex;
@@ -394,11 +193,7 @@
         .footer__logo-text .ai { color: var(--accent); }
         .footer__copy { font-size: 0.82rem; color: rgba(255,255,255,0.35); }
         .footer__links { display: flex; gap: 24px; }
-        .footer__links a {
-            font-size: 0.82rem;
-            color: rgba(255,255,255,0.35);
-            transition: color 0.2s;
-        }
+        .footer__links a { font-size: 0.82rem; color: rgba(255,255,255,0.35); transition: color 0.2s; }
         .footer__links a:hover { color: rgba(255,255,255,0.8); }
     </style>
 </head>
@@ -426,7 +221,7 @@
         <div class="page-header__inner">
             <div>
                 <span class="eyebrow page-header__label">Lineaire Blog</span>
-                <h1 class="t-display page-header__heading">Insights.</h1>
+                <h1 class="page-header__heading">Insights.</h1>
             </div>
             <p class="page-header__desc">
                 Perspectives on AI automation, organizational AI literacy, and building reliable AI systems at scale.
@@ -436,131 +231,13 @@
 </div>
 
 
-<!-- FEATURED POST -->
-<section class="featured" aria-label="Featured post">
-    <div class="wrap">
-        <a href="/blog/ai-literacy-competitive-advantage.html" class="featured__card" style="display:grid;">
-            <div class="featured__image">
-                <div class="featured__image-bg"></div>
-                <span class="featured__cat">AI Literacy</span>
-                <div class="featured__image-label">AI<br>Literacy</div>
-            </div>
-            <div class="featured__content">
-                <div>
-                    <div class="featured__meta">
-                        <span>Lineaire Team</span>
-                        <span class="featured__meta-dot"></span>
-                        <span>April 4, 2026</span>
-                        <span class="featured__meta-dot"></span>
-                        <span>6 min read</span>
-                    </div>
-                    <h2 class="featured__title">Why AI Literacy Is Your Most Underrated Competitive Advantage</h2>
-                    <p class="featured__excerpt">Companies are racing to deploy AI. The ones that will actually win aren't just the ones with the best models — they're the ones where every person who touches an AI system understands what it's doing and why.</p>
-                </div>
-                <div class="featured__link">
-                    Read article <span>→</span>
-                </div>
-            </div>
-        </a>
+<!-- COMING SOON -->
+<div class="wrap">
+    <div class="coming-soon">
+        <p class="coming-soon__title">Coming soon.</p>
+        <p class="coming-soon__sub">Articles are on their way. Check back shortly.</p>
     </div>
-</section>
-
-
-<!-- POST GRID -->
-<section class="posts" aria-label="All posts">
-    <div class="wrap">
-        <div class="posts__heading">More articles</div>
-        <div class="posts__grid">
-
-            <a href="#" class="post-card">
-                <span class="post-card__cat">Governance</span>
-                <h3 class="post-card__title">The Hidden Cost of AI Without Governance</h3>
-                <p class="post-card__excerpt">Most organizations underestimate how quickly an ungoverned AI deployment becomes a liability. Here's what to put in place before it becomes a problem.</p>
-                <div class="post-card__footer">
-                    <span class="post-card__meta">Mar 20, 2026 · 5 min</span>
-                    <div class="post-card__arrow" aria-hidden="true">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                    </div>
-                </div>
-            </a>
-
-            <a href="#" class="post-card">
-                <span class="post-card__cat">Strategy</span>
-                <h3 class="post-card__title">How to Evaluate AI Automation ROI Before You Build</h3>
-                <p class="post-card__excerpt">Before committing to a build, you need a clear model for what success looks like. These are the four variables that actually predict whether an automation will deliver.</p>
-                <div class="post-card__footer">
-                    <span class="post-card__meta">Mar 10, 2026 · 7 min</span>
-                    <div class="post-card__arrow" aria-hidden="true">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                    </div>
-                </div>
-            </a>
-
-            <a href="#" class="post-card">
-                <span class="post-card__cat">Operations</span>
-                <h3 class="post-card__title">5 Signs Your Team Is Ready to Scale AI Operations</h3>
-                <p class="post-card__excerpt">Scaling AI isn't just a technical challenge — it's an organizational one. These signals tell you whether your team has the foundations to go from pilot to production.</p>
-                <div class="post-card__footer">
-                    <span class="post-card__meta">Feb 26, 2026 · 4 min</span>
-                    <div class="post-card__arrow" aria-hidden="true">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                    </div>
-                </div>
-            </a>
-
-            <a href="#" class="post-card">
-                <span class="post-card__cat">Automation</span>
-                <h3 class="post-card__title">Choosing the Right Automation Pattern for Your Workflow</h3>
-                <p class="post-card__excerpt">Not every workflow calls for an agent. Understanding when to use a simple chain, a router, or a full agentic loop is one of the most important design decisions you'll make.</p>
-                <div class="post-card__footer">
-                    <span class="post-card__meta">Feb 14, 2026 · 6 min</span>
-                    <div class="post-card__arrow" aria-hidden="true">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                    </div>
-                </div>
-            </a>
-
-            <a href="#" class="post-card">
-                <span class="post-card__cat">Security</span>
-                <h3 class="post-card__title">What "Secure AI" Actually Means in Practice</h3>
-                <p class="post-card__excerpt">Security in AI systems isn't just about data privacy. It's about prompt injection, output validation, access control, and audit trails — and most teams skip all of it.</p>
-                <div class="post-card__footer">
-                    <span class="post-card__meta">Jan 30, 2026 · 8 min</span>
-                    <div class="post-card__arrow" aria-hidden="true">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                    </div>
-                </div>
-            </a>
-
-            <a href="#" class="post-card">
-                <span class="post-card__cat">AI Literacy</span>
-                <h3 class="post-card__title">The Executive's Guide to Understanding AI Output Quality</h3>
-                <p class="post-card__excerpt">You don't need to understand transformers to make good decisions about AI. But you do need to know how to evaluate whether a system is actually doing what you think it is.</p>
-                <div class="post-card__footer">
-                    <span class="post-card__meta">Jan 15, 2026 · 5 min</span>
-                    <div class="post-card__arrow" aria-hidden="true">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                    </div>
-                </div>
-            </a>
-
-        </div>
-    </div>
-</section>
-
-
-<!-- CTA -->
-<section class="cta-band" aria-labelledby="cta-heading">
-    <div class="wrap">
-        <div class="cta-band__inner">
-            <div>
-                <h2 class="cta-band__heading" id="cta-heading">Ready to build your<br>AI-ready business?</h2>
-                <p class="cta-band__sub">Let's start with a conversation. No decks, no pressure.</p>
-            </div>
-            <a href="mailto:hello@lineaire.ai" class="btn btn-dark">Get in touch &nbsp;→</a>
-        </div>
-    </div>
-</section>
+</div>
 
 
 <!-- FOOTER -->

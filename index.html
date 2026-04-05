@@ -257,36 +257,9 @@
             height: auto;
         }
 
-        /* Hero bottom bar */
-        .hero__bar {
-            border-top: 1px solid var(--border);
-            padding-block: 36px;
-        }
-        .hero__stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-        .hstat__label {
-            font-size: 0.72rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--muted);
-            margin-bottom: 6px;
-        }
-        .hstat__value {
-            font-family: var(--font-display);
-            font-size: 1.35rem;
-            font-weight: 700;
-        }
-
         @media (max-width: 1000px) {
             .hero__main { grid-template-columns: 1fr; }
             .hero__visual { display: none; }
-        }
-        @media (max-width: 600px) {
-            .hero__stats { grid-template-columns: 1fr; gap: 16px; }
         }
 
         /* ─────────────────────────────────────────────
@@ -643,25 +616,6 @@
         </div><!-- /hero__main -->
     </div><!-- /wrap -->
 
-    <!-- Bottom stats bar -->
-    <div class="hero__bar">
-        <div class="wrap">
-            <div class="hero__stats">
-                <div class="hstat">
-                    <div class="hstat__label">Our focus</div>
-                    <div class="hstat__value">AI Automation</div>
-                </div>
-                <div class="hstat">
-                    <div class="hstat__label">Strategic goal</div>
-                    <div class="hstat__value">AI Literacy</div>
-                </div>
-                <div class="hstat">
-                    <div class="hstat__label">Core principle</div>
-                    <div class="hstat__value">Full Control</div>
-                </div>
-            </div>
-        </div>
-    </div>
 </section>
 
 

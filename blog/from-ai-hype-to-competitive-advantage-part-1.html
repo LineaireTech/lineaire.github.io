@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Why AI Literacy Is Your Most Underrated Competitive Advantage — Lineaire</title>
-    <meta name="description" content="Companies racing to deploy AI will find that the ones who win aren't just those with the best models — they're the ones where every person who touches an AI system understands what it's doing and why.">
+    <title>From AI Hype to Competitive Advantage (Part 1) — Lineaire</title>
+    <meta name="description" content="Why AI initiatives fail to generate revenue.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* ─── TOKENS ─── */
         :root {
             --bg:      #f6f4f0;
             --black:   #111111;
@@ -26,7 +25,6 @@
             --pad:     clamp(24px, 4vw, 48px);
         }
 
-        /* ─── RESET ─── */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
         body {
@@ -41,10 +39,9 @@
         img { display: block; max-width: 100%; }
         a { text-decoration: none; color: inherit; }
 
-        /* ─── LAYOUT ─── */
         .wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: var(--pad); }
 
-        /* ─── NAV ─── */
+        /* NAV */
         .nav {
             position: fixed;
             inset-block-start: 0;
@@ -101,7 +98,7 @@
         .btn-dark:hover { background: #2a2a2a; }
         @media (max-width: 700px) { .nav__links .nav-text-links { display: none; } }
 
-        /* ─── POST HEADER ─── */
+        /* POST HEADER */
         .post-header {
             background: var(--black);
             color: var(--white);
@@ -143,6 +140,14 @@
             line-height: 1.08;
             letter-spacing: -0.03em;
             color: var(--white);
+            margin-bottom: 20px;
+        }
+        .post-header__subtitle {
+            font-family: var(--font-body);
+            font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+            font-weight: 400;
+            line-height: 1.45;
+            color: rgba(255,255,255,0.65);
             margin-bottom: 28px;
         }
         .post-header__meta {
@@ -155,7 +160,7 @@
         }
         .post-header__meta-dot { width: 3px; height: 3px; background: rgba(255,255,255,0.3); border-radius: 50%; }
 
-        /* ─── ARTICLE ─── */
+        /* ARTICLE */
         .article-wrap {
             display: grid;
             grid-template-columns: 1fr 280px;
@@ -168,7 +173,6 @@
             .article-sidebar { order: -1; }
         }
 
-        /* Article body typography */
         .article-body { max-width: 680px; }
         .article-body p {
             font-size: 1.0625rem;
@@ -253,35 +257,45 @@
             border-top: 1px solid var(--border);
             margin: 48px 0;
         }
+        .article-body .ref {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--accent);
+            vertical-align: super;
+            line-height: 0;
+            margin-left: 2px;
+            text-decoration: none;
+        }
+        .article-body .ref:hover { color: var(--black); }
+        .article-body .references {
+            margin-top: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .article-body .references li {
+            font-size: 0.95rem;
+            line-height: 1.55;
+            color: #2a2a2a;
+            padding-left: 28px;
+        }
+        .article-body .references li a {
+            color: #2a2a2a;
+            text-decoration: underline;
+            text-decoration-color: var(--accent);
+            text-decoration-thickness: 1px;
+            text-underline-offset: 3px;
+            word-break: break-word;
+            transition: color 0.2s;
+        }
+        .article-body .references li a:hover { color: var(--black); }
+        .article-body .references li:target {
+            background: rgba(255,189,89,0.12);
+            border-radius: 4px;
+        }
 
         /* Sidebar */
-        .article-sidebar {
-            position: sticky;
-            top: calc(var(--nav-h) + 32px);
-        }
-        .sidebar-card {
-            background: var(--black);
-            border-radius: 12px;
-            padding: 28px;
-            color: var(--white);
-            margin-bottom: 16px;
-        }
-        .sidebar-card__label {
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: rgba(255,255,255,0.4);
-            margin-bottom: 12px;
-        }
-        .sidebar-card__content {
-            font-family: var(--font-display);
-            font-size: 1.0rem;
-            font-weight: 600;
-            line-height: 1.4;
-            color: var(--white);
-        }
-        .sidebar-card__content .accent { color: var(--accent); }
+        .article-sidebar { position: sticky; top: calc(var(--nav-h) + 32px); }
         .sidebar-toc {
             background: var(--white);
             border: 1px solid var(--border);
@@ -297,27 +311,11 @@
             margin-bottom: 16px;
         }
         .sidebar-toc ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 10px; }
-        .sidebar-toc a {
-            font-size: 0.875rem;
-            color: #555;
-            transition: color 0.2s;
-            display: block;
-            line-height: 1.4;
-        }
+        .sidebar-toc a { font-size: 0.875rem; color: #555; transition: color 0.2s; display: block; line-height: 1.4; }
         .sidebar-toc a:hover { color: var(--black); }
 
-        /* ─── POST FOOTER ─── */
-        .post-footer {
-            border-top: 1px solid var(--border);
-            padding-block: 48px;
-        }
-        .post-footer__inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 24px;
-            flex-wrap: wrap;
-        }
+        /* POST FOOTER */
+        .post-footer { border-top: 1px solid var(--border); padding-block: 48px; }
         .post-footer__back {
             display: inline-flex;
             align-items: center;
@@ -329,11 +327,8 @@
         }
         .post-footer__back:hover { color: var(--black); }
 
-        /* ─── CTA BAND ─── */
-        .cta-band {
-            background: var(--accent);
-            padding-block: clamp(60px, 8vw, 100px);
-        }
+        /* CTA BAND */
+        .cta-band { background: var(--accent); padding-block: clamp(60px, 8vw, 100px); }
         .cta-band__inner {
             display: flex;
             align-items: center;
@@ -351,7 +346,7 @@
         }
         .cta-band__sub { margin-top: 12px; font-size: 1rem; color: rgba(17,17,17,0.65); }
 
-        /* ─── FOOTER ─── */
+        /* FOOTER */
         .footer { background: var(--black); padding-block: 48px; }
         .footer__inner {
             display: flex;
@@ -385,6 +380,7 @@
             <ul class="nav-text-links" style="display:flex;gap:36px;list-style:none;">
                 <li><a href="/#what-we-do">What we do</a></li>
                 <li><a href="/#ai-literacy">AI Literacy</a></li>
+                <li><a href="/#process">Process</a></li>
                 <li><a href="/blog.html">Blog</a></li>
             </ul>
             <a href="/#contact" class="btn btn-dark">Get in touch</a>
@@ -398,14 +394,15 @@
     <div class="wrap">
         <div class="post-header__inner">
             <a href="/blog.html" class="post-header__back">← All articles</a>
-            <div class="post-header__cat">AI Literacy</div>
-            <h1 class="post-header__title">Why AI Literacy Is Your Most Underrated Competitive Advantage</h1>
+            <div class="post-header__cat">Strategy</div>
+            <h1 class="post-header__title">From AI Hype to Competitive Advantage (Part 1)</h1>
+            <p class="post-header__subtitle">Why AI initiatives fail to generate revenue</p>
             <div class="post-header__meta">
                 <span>Lineaire Team</span>
                 <span class="post-header__meta-dot"></span>
-                <span>April 4, 2026</span>
+                <span>May 17, 2026</span>
                 <span class="post-header__meta-dot"></span>
-                <span>6 min read</span>
+                <span></span>
             </div>
         </div>
     </div>
@@ -416,87 +413,71 @@
 <div class="wrap">
     <div class="article-wrap">
 
-        <!-- Body -->
-        <article class="article-body" aria-label="Article content">
+        <article class="article-body">
 
-            <p>Companies are racing to deploy AI. The ones that will actually win aren't just the ones with the best models — they're the ones where every person who touches an AI system understands what it's doing and why.</p>
+            <p>Generative AI adoption has accelerated faster than almost any enterprise technology in recent history. Organizations are deploying copilots, assistants, and automated workflows across nearly every business function. Yet despite the scale of investment, most companies are still struggling to translate AI adoption into measurable revenue growth or durable competitive advantage. </p>
+            
+            <p>This series examines why many AI initiatives fail financially, why generic AI strategies produce limited differentiation, and how organizations can build AI systems that generate long-term economic value.</p>
 
-            <p>This isn't a soft claim. It's a structural advantage. And most organizations are leaving it entirely on the table.</p>
+            <h2 id="gap">The gap between AI adoption and business impact</h2>
 
-            <h2>The gap no one talks about</h2>
+            <p>Most enterprises report high levels of experimentation with generative AI but see limited translation into revenue or measurable business value. A significant portion of AI projects remain in pilot or proof-of-concept stages and never integrate into core operations. This reflects a mismatch between technology exploration and strategic deployment.<a href="#ref-1" class="ref">[1]</a></p>
 
-            <p>There's a pattern we see repeatedly in organizations that have invested heavily in AI: a small group of engineers who deeply understand the systems, and a much larger group of operators, managers, and executives who interact with the outputs without understanding the process.</p>
+            <p>Organizations often treat AI projects as technology showcases rather than targeted business investments. Efforts center on novelty: proof of concept achievements, demos, and prototype outputs, without explicit linkage to financial metrics such as cost reduction or revenue expansion. This misalignment means AI work rarely moves beyond experimentation into operational systems that contribute to the bottom line.<a href="#ref-4" class="ref">[4]</a><a href="#ref-6" class="ref">[6]</a></p>
 
-            <p>That gap creates three predictable problems:</p>
-
-            <ul>
-                <li><strong>Blind trust.</strong> When people don't understand how an AI system works, they tend to either over-trust it (assuming it's always right) or under-trust it (ignoring outputs they should act on). Both are expensive.</li>
-                <li><strong>Slow failure detection.</strong> The people closest to a broken system are often the last to recognize it, because they lack the mental model to distinguish between "the AI made a mistake" and "this process has a problem."</li>
-                <li><strong>Blocked iteration.</strong> Good AI systems get better through feedback loops. If the people using a system can't describe what's wrong with it in useful terms, those loops never close.</li>
-            </ul>
-
-            <blockquote>
-                <p>The bottleneck in most AI deployments isn't the model. It's the organization around the model.</p>
-            </blockquote>
-
-            <h2>What AI literacy actually means</h2>
-
-            <p>AI literacy doesn't mean everyone needs to understand transformers, fine-tuning, or prompt engineering at an engineering level. It means something narrower and more practical: the ability to work effectively alongside AI systems — to interpret their outputs, recognize their failure modes, and make good decisions about when to trust them.</p>
-
-            <p>In practice, this breaks down into three capabilities:</p>
-
-            <h3>1. Understanding system behavior</h3>
-
-            <p>This is the foundation. People who work with AI systems need to understand <em>what kind of thing the system is</em> — what inputs drive it, what outputs it produces, and what the relationship is between the two. Not at an implementation level, but at a conceptual level. A customer service team using an AI triage system should understand what signals the system is looking for, how confident it is in its classifications, and what kinds of inputs are likely to confuse it.</p>
-
-            <h3>2. Anticipating failures</h3>
-
-            <p>Every AI system has failure modes. The question is whether the humans in the loop know what those failure modes look like before they encounter them. A well-trained team treats AI failure as a routine event to be managed, not a surprise to be escalated. They know the difference between a hallucination and a correct-but-counterintuitive output. They know which edge cases to watch for. They have a playbook.</p>
-
-            <h3>3. Closing feedback loops</h3>
-
-            <p>AI systems that get better over time do so because someone is paying attention and feeding useful signal back into the system. This requires people who can identify when an output was wrong, articulate <em>why</em> it was wrong in a way that's actionable, and understand how that feedback actually changes the system's behavior. Without this capability, AI systems stagnate or drift.</p>
-
-            <h2>How to build it as an organizational capability</h2>
-
-            <p>The mistake most organizations make is treating AI literacy as a training problem — something to solve with a workshop or an e-learning module. It's not. Training creates awareness. Capability comes from practice, feedback, and integration into how people actually work.</p>
-
-            <p>Building AI literacy as a genuine organizational capability requires three things:</p>
-
-            <ol>
-                <li><strong>Structured exposure.</strong> People need to encounter AI systems in ways that build intuition, not just automate outputs. This means deliberately designing workflows that require people to engage with AI reasoning, not just AI decisions.</li>
-                <li><strong>A shared language.</strong> Teams need vocabulary for talking about AI behavior — concepts like confidence, context windows, hallucination, prompt sensitivity, and output validation — that lets them communicate precisely about what's happening and what needs to change.</li>
-                <li><strong>Clear ownership.</strong> Someone needs to be responsible for AI system health at the operational level. Not the engineering team that built it, but the people who use it every day. That means giving them the tools and authority to raise issues and drive changes.</li>
-            </ol>
-
-            <h2>The compounding return</h2>
-
-            <p>Here's what makes AI literacy genuinely strategic, rather than just operationally useful: it compounds. A team that understands its AI systems today is better positioned to adopt the next generation of AI tools, absorb more complex automations, and make better decisions about where AI should and shouldn't be applied.</p>
-
-            <p>The organizations that invest in this now won't just run their current AI systems better. They'll have a structural advantage in every AI deployment they make going forward.</p>
+            <p>The widespread availability of large foundation models has commoditized core capabilities. When multiple competitors use the same underlying models with minimal customization, differentiation erodes. Access alone does not create economic advantage; it levels the playing field at best.<a href="#ref-3" class="ref">[3]</a></p>
 
             <hr>
 
-            <p>At Lineaire, we build AI literacy into every engagement — not as a separate workstream, but as an integral part of how we design, deploy, and hand off AI systems. If you're thinking about what this looks like in your organization, <a href="/#contact" style="color:var(--black);font-weight:600;text-decoration:underline;text-underline-offset:3px;">we'd be glad to talk.</a></p>
+            <h2 id="revenue">Where revenue actually comes from</h2>
+
+            <p>Revenue attributable to AI emerges when AI is embedded into workflows that directly affect economic outcomes.</p>
+
+            <p><strong>Operational expenditure reduction</strong> scales when AI replaces or augments repetitive, high-volume human tasks. Automated processing of knowledge work (data entry, routing decisions, standard communications) reduces labor costs, drives margin expansion, and frees capacity for higher-value activities.<a href="#ref-5" class="ref">[5]</a></p>
+
+            <p><strong>Revenue expansion</strong> occurs when AI enables capabilities that were previously impractical or costly to deliver. Product features powered by generative AI, for example personalization at scale or automated synthesis of complex data, can justify premium pricing or expand serviceable markets. Revenue growth in this mode is tied to unique capabilities that customers are willing to pay for.<a href="#ref-2" class="ref">[2]</a></p>
+
+            <p><strong>Throughput scaling</strong> refers to increases in output without proportional increases in input costs. When AI augments human workers, throughput can grow faster than headcount, creating economic leverage. An organization that doubles task output with marginal cost increases realizes value that compounds over time.<a href="#ref-5" class="ref">[5]</a></p>
+
+            <p>Distinguishing between <em>value creation</em> and <em>value capture</em> is critical. Value creation refers to the technical ability of models to produce outputs; value capture represents the economic benefit an organization realizes from those outputs. Without intentional alignment to revenue drivers, high-performance models generate outputs without measurable financial impact.<a href="#ref-2" class="ref">[2]</a></p>
+
+            <hr>
+
+            <h2 id="why-generic-fails">Why generic AI approaches fail strategically</h2>
+
+            <p>Generic approaches to AI, relying on externally hosted models with minimal integration, fail to produce sustainable business impact for several reasons.</p>
+
+            <p><strong>Commoditization of capability</strong> reduces defensibility. If every organization uses the same externally hosted models with standard prompts and similar data inputs, no firm gains a lasting edge. Competitive advantage requires differentiation that goes beyond baseline model performance.<a href="#ref-3" class="ref">[3]</a></p>
+
+            <p><strong>Dependency on third-party providers</strong> for core AI functionality cedes pricing power and roadmap control. Organizations that build their strategic plans around external APIs expose themselves to changes in pricing, terms, or service availability that they cannot influence. Over time, this dilutes strategic autonomy.<a href="#ref-3" class="ref">[3]</a></p>
+
+            <p><strong>Limited proprietary alignment.</strong> Externally hosted models cannot fully incorporate an enterprise's proprietary knowledge, internal logic, and operational constraints. Without the ability to embed proprietary data and business rules into model behavior, outputs remain generic and misaligned with unique business needs.<a href="#ref-2" class="ref">[2]</a></p>
+
+            <p><strong>Misaligned cost structures.</strong> Pricing models that scale with usage (per-token or per-call) can disconnect costs from value delivered. When costs escalate with volume, organizations may find that economic benefits are eroded by rising AI consumption fees, especially if usage grows before revenue impact is realized.<a href="#ref-1" class="ref">[1]</a></p>
+
+            <hr>
+
+            <h2 id="references">References</h2>
+
+            <ol class="references">
+                <li id="ref-1"><a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai?os=wtmbrgj5xbah&amp;utm_source=chatgpt.com" target="_blank" rel="noopener">McKinsey — The State of AI: Global Survey 2025</a></li>
+                <li id="ref-2"><a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-how-organizations-are-rewiring-to-capture-value?utm_source=chatgpt.com" target="_blank" rel="noopener">McKinsey — How organizations are rewiring to capture value</a></li>
+                <li id="ref-3"><a href="https://hai.stanford.edu/news/reflections-foundation-models?utm_source=chatgpt.com" target="_blank" rel="noopener">Stanford HAI — Reflections on Foundation Models</a></li>
+                <li id="ref-4"><a href="https://www.reuters.com/business/over-40-agentic-ai-projects-will-be-scrapped-by-2027-gartner-says-2025-06-25/?utm_source=chatgpt.com" target="_blank" rel="noopener">Reuters — Gartner predicts over 40% of agentic AI projects will be scrapped</a></li>
+                <li id="ref-5"><a href="https://www.businessinsider.com/mckinsey-ai-adoption-return-on-investment-analysis-enterprise-2026-5?utm_source=chatgpt.com" target="_blank" rel="noopener">Business Insider — McKinsey says clients are getting $3 back for every $1 spent on AI</a></li>
+                <li id="ref-6"><a href="https://www.itpro.com/business/careers-and-training/upskill-your-staff-in-ai-or-expect-them-to-quit-says-gartner?utm_source=chatgpt.com" target="_blank" rel="noopener">ITPro — Gartner on AI upskilling and organizational readiness</a></li>
+            </ol>
 
         </article>
 
-        <!-- Sidebar -->
         <aside class="article-sidebar">
-            <div class="sidebar-card">
-                <div class="sidebar-card__label">Key takeaway</div>
-                <div class="sidebar-card__content">
-                    The bottleneck in most AI deployments isn't the model.<br>
-                    It's the <span class="accent">organization around it.</span>
-                </div>
-            </div>
             <div class="sidebar-toc">
                 <div class="sidebar-toc__label">In this article</div>
                 <ul>
-                    <li><a href="#">The gap no one talks about</a></li>
-                    <li><a href="#">What AI literacy actually means</a></li>
-                    <li><a href="#">How to build it as a capability</a></li>
-                    <li><a href="#">The compounding return</a></li>
+                    <li><a href="#gap">The gap between AI adoption and business impact</a></li>
+                    <li><a href="#revenue">Where revenue actually comes from</a></li>
+                    <li><a href="#why-generic-fails">Why generic AI approaches fail strategically</a></li>
+                    <li><a href="#references">References</a></li>
                 </ul>
             </div>
         </aside>
@@ -508,19 +489,17 @@
 <!-- POST FOOTER -->
 <div class="wrap">
     <div class="post-footer">
-        <div class="post-footer__inner">
-            <a href="/blog.html" class="post-footer__back">← Back to all articles</a>
-        </div>
+        <a href="/blog.html" class="post-footer__back">← Back to all articles</a>
     </div>
 </div>
 
 
 <!-- CTA -->
-<section class="cta-band" aria-labelledby="cta-heading">
+<section class="cta-band">
     <div class="wrap">
         <div class="cta-band__inner">
             <div>
-                <h2 class="cta-band__heading" id="cta-heading">Ready to build your<br>AI-ready business?</h2>
+                <h2 class="cta-band__heading">Ready to build your<br>AI-ready business?</h2>
                 <p class="cta-band__sub">Let's start with a conversation. No decks, no pressure.</p>
             </div>
             <a href="mailto:hello@lineaire.ai" class="btn btn-dark">Get in touch &nbsp;→</a>
@@ -538,6 +517,7 @@
             <nav class="footer__links" aria-label="Footer navigation">
                 <a href="/#what-we-do">What we do</a>
                 <a href="/#ai-literacy">AI Literacy</a>
+                <a href="/#process">Process</a>
                 <a href="/#contact">Contact</a>
             </nav>
         </div>

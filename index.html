@@ -207,6 +207,11 @@
             align-items: center;
             gap: 36px;
         }
+        .nav-text-links {
+            display: flex;
+            gap: 36px;
+            list-style: none;
+        }
         .nav__links a:not(.btn) {
             font-size: 0.9rem;
             font-weight: 500;
@@ -216,8 +221,80 @@
         }
         .nav__links a:not(.btn):hover { opacity: 1; }
 
+        /* Hamburger toggle */
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            padding: 0;
+            position: relative;
+            z-index: 201;
+        }
+        .nav-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--black);
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.2s ease;
+        }
+        .nav-toggle.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-toggle.is-open span:nth-child(2) { opacity: 0; }
+        .nav-toggle.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* Mobile slide-down menu */
+        .nav-mobile {
+            position: fixed;
+            inset: var(--nav-h) 0 0 0;
+            background: var(--bg);
+            z-index: 199;
+            display: flex;
+            flex-direction: column;
+            padding: 40px var(--pad);
+            transform: translateY(-100%);
+            transition: transform 0.35s ease, visibility 0s linear 0.35s;
+            visibility: hidden;
+            overflow-y: auto;
+        }
+        .nav-mobile.is-open {
+            transform: translateY(0);
+            visibility: visible;
+            transition: transform 0.35s ease, visibility 0s linear 0s;
+        }
+        .nav-mobile__links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            padding: 0;
+            margin: 0 0 32px;
+        }
+        .nav-mobile__links a {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--black);
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-mobile__cta { align-self: flex-start; }
+
         @media (max-width: 700px) {
-            .nav__links .nav-text-links { display: none; }
+            .nav-text-links { display: none; }
+            .nav__links .btn { display: none; }
+            .nav-toggle { display: flex; }
+        }
+        @media (min-width: 701px) {
+            .nav-mobile { display: none; }
         }
 
         /* ─────────────────────────────────────────────
@@ -549,6 +626,34 @@
         .divider { border: none; border-top: 1px solid var(--border); }
 
         /* ─────────────────────────────────────────────
+           MOBILE TUNING — single left edge for all sections
+        ───────────────────────────────────────────── */
+        @media (max-width: 700px) {
+            :root { --pad: 20px; }
+
+            /* Hero: let heading wrap naturally, tighten rhythm */
+            .hero__heading br { display: none; }
+            .hero__main { padding-block: 48px 40px; gap: 32px; }
+            .hero__sub { margin-bottom: 32px; }
+
+            /* Cards: drop horizontal padding so content lines up with section eyebrows/headers */
+            .pillar { padding: 32px 0 36px; }
+            .lit-feat { padding: 22px 0; gap: 14px; }
+            .pstep { padding: 32px 0 40px; }
+            .pstep__bg-num { inset-inline-end: 0; font-size: 5.5rem; }
+
+            /* CTA band: wrap heading naturally */
+            .cta-band__heading br { display: none; }
+            .cta-band__heading { font-size: 1.7rem; }
+            .cta-band__sub { font-size: 0.95rem; }
+
+            /* Footer: stack so links don't sprawl across screen via space-between */
+            .footer { padding-block: 36px; }
+            .footer__inner { flex-direction: column; align-items: flex-start; gap: 18px; }
+            .footer__links { flex-wrap: wrap; gap: 12px 18px; }
+        }
+
+        /* ─────────────────────────────────────────────
            SCROLL FADE
         ───────────────────────────────────────────── */
         @media (prefers-reduced-motion: no-preference) {
@@ -573,7 +678,7 @@
     <div class="nav__inner">
         <a href="#" class="nav__logo" aria-label="Lineaire home">Line<span class="ai">ai</span>re.</a>
         <nav class="nav__links" aria-label="Main navigation">
-            <ul class="nav-text-links" style="display:flex;gap:36px;list-style:none;">
+            <ul class="nav-text-links">
                 <li><a href="#what-we-do">What we do</a></li>
                 <li><a href="#ai-literacy">AI Literacy</a></li>
                 <li><a href="#process">Process</a></li>
@@ -581,8 +686,22 @@
             </ul>
             <a href="#contact" class="btn btn-dark">Get in touch</a>
         </nav>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-controls="nav-mobile" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
     </div>
 </header>
+
+<!-- Mobile menu -->
+<div class="nav-mobile" id="nav-mobile" aria-hidden="true">
+    <ul class="nav-mobile__links">
+        <li><a href="#what-we-do">What we do</a></li>
+        <li><a href="#ai-literacy">AI Literacy</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="/blog.html">Blog</a></li>
+    </ul>
+    <a href="#contact" class="btn btn-accent nav-mobile__cta">Get in touch &nbsp;→</a>
+</div>
 
 
 <!-- ═══════════════════════════════════════════════
@@ -886,6 +1005,28 @@
             });
         }, { threshold: 0.12 });
         revealEls.forEach(el => io.observe(el));
+    }
+
+    // Mobile menu toggle
+    const navToggle = document.getElementById('nav-toggle');
+    const navMobile = document.getElementById('nav-mobile');
+    if (navToggle && navMobile) {
+        const closeMenu = () => {
+            navToggle.classList.remove('is-open');
+            navMobile.classList.remove('is-open');
+            navToggle.setAttribute('aria-expanded', 'false');
+            navMobile.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        };
+        navToggle.addEventListener('click', () => {
+            const isOpen = !navToggle.classList.contains('is-open');
+            navToggle.classList.toggle('is-open', isOpen);
+            navMobile.classList.toggle('is-open', isOpen);
+            navToggle.setAttribute('aria-expanded', String(isOpen));
+            navMobile.setAttribute('aria-hidden', String(!isOpen));
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+        });
+        navMobile.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
     }
 
     // Nav shadow on scroll
